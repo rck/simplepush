@@ -23,7 +23,7 @@ release:
 	for os in ${OS}; do \
 		GOOS=$$os GOARCH=amd64 go build ${LDFLAGS} -o ../../${BINARY}-$$os-amd64; \
 	done
-	GOOS=linux GOARCH=amd64 CGO_ENABLED=0 cd cmd/simplepush && go build ${LDFLAGS} -o ../../${BINARY}-alpine-amd64
+	cd cmd/simplepush && GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build ${LDFLAGS} -o ../../${BINARY}-alpine-amd64
 
 doc: build
 
