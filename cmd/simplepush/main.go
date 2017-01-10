@@ -5,7 +5,8 @@ import (
 	"fmt"
 	"os"
 	"path"
-	"simplepush"
+
+	"github.com/rck/simplepush"
 )
 
 var (
