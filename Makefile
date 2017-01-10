@@ -33,7 +33,7 @@ clean:
 		if [ -f $$f ] ; then rm $$f ; fi; \
 	done
 
-	rm -f ${BINARY}
+	rm -f ${BINARY} ${BINARY}-alpine-amd64
 
 distclean: clean
 	rm -f ${BINARY}.1
