@@ -14,6 +14,8 @@ Usage: simplepush -k key -m message [-t title] [-e event] [-p password]
     	Set simplepush.io key
   -m message
     	Set message
+  -s salt
+    	Set custom salt
   -p password
     	Set password, if set send message encrypted
   -t title

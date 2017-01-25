@@ -12,6 +12,7 @@ import (
 var (
 	flagK = flag.String("k", "", "Set simplepush.io `key`")
 	flagP = flag.String("p", "", "Set `password`, if set send message encrypted")
+	flagS = flag.String("s", "", "Set custom `salt`")
 	flagE = flag.String("e", "", "Set `event`")
 	flagT = flag.String("t", "", "Set `title`")
 	flagM = flag.String("m", "", "Set `message`")
@@ -27,7 +28,7 @@ func main() {
 
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, "%s (%s)\n", Program, Version)
-		fmt.Fprintf(os.Stderr, "Usage: %s -k key -m message [-t title] [-e event] [-p password]\n", Program)
+		fmt.Fprintf(os.Stderr, "Usage: %s -k key -m message [-t title] [-e event] [-p password] [-s salt]\n", Program)
 		flag.PrintDefaults()
 		os.Exit(1)
 	}
@@ -41,6 +42,7 @@ func main() {
 		Message:       *flagM,
 		Event:         *flagE,
 		Encrypt:       *flagP != "",
+		Salt:          *flagS,
 	})
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)

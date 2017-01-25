@@ -18,11 +18,11 @@ import (
 
 type Message struct {
 	SimplePushKey, Title, Message, Event string
-	Password                             string
+	Password, Salt                       string
 	Encrypt                              bool
 }
 
-var Salt = "1789F0B8C4A051E5"
+var defaultSalt = "1789F0B8C4A051E5"
 var APIUrl = "https://api.simplepush.io/"
 
 func paddingPKCS5(src []byte, blockSize int) []byte {
@@ -63,7 +63,12 @@ func Send(m Message) error {
 
 	if m.Encrypt {
 		var err error
-		sha := sha1.Sum([]byte(m.Password + Salt))
+		salt := defaultSalt
+		if m.Salt != "" {
+			salt = m.Salt
+
+		}
+		sha := sha1.Sum([]byte(m.Password + salt))
 		key, _ := hex.DecodeString(fmt.Sprintf("%X", sha)[:32])
 		iv = make([]byte, aes.BlockSize)
 
