@@ -3,7 +3,7 @@ MAINTAINER Roland Kammerer <dev.rck@gmail.com>
 
 # docker run -it --rm simplepush -k key -m message
 
-ENV SIMPLEPUSH_VERSION 0.1
+ENV SIMPLEPUSH_VERSION 0.2
 
 RUN apk add --no-cache --virtual .build-deps wget ca-certificates
 RUN wget "https://github.com/rck/simplepush/releases/download/v${SIMPLEPUSH_VERSION}/simplepush-alpine-amd64" -O /usr/local/bin/simplepush
