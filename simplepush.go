@@ -1,3 +1,4 @@
+// Package simplepush provides a library to send (end-to-end encrypted) push messages to Smartphones via https://simplepush.io
 package simplepush
 
 import (
@@ -16,13 +17,21 @@ import (
 	"net/url"
 )
 
+// Message contains all the information necessary to send a, potentially encrypted, message.
 type Message struct {
-	SimplePushKey, Title, Message, Event string
-	Password, Salt                       string
-	Encrypt                              bool
+	SimplePushKey string // Your simeplepush.io key
+	Title         string // Title of your message
+	Message       string // Message body
+	Event         string // The event the message should be associated with
+	Encrypt       bool   // If set, the message will be sent end-to-end encrypted with the provided Password/Salt. If false, the message is sent unencrypted.
+	Password      string // Your password
+	Salt          string // If set, this salt is used, otherwise the default one gets used.
 }
 
 var defaultSalt = "1789F0B8C4A051E5"
+
+// APIUrl is the public API entry point for https://simplepush.io. It is public to allow overriding in case
+// of simplepush.io compatible services.
 var APIUrl = "https://api.simplepush.io/"
 
 func paddingPKCS5(src []byte, blockSize int) []byte {
@@ -48,6 +57,8 @@ func encrypt(key, iv, buf []byte) (string, error) {
 	return base64.URLEncoding.EncodeToString(buf), nil
 }
 
+// Send takes a message of type Message and sends it via the simplepush.io API.
+// Please refer to the documentation of the Message struct for further information.
 func Send(m Message) error {
 	title := m.Title
 	message := m.Message

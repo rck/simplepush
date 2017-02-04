@@ -18,17 +18,20 @@ var (
 	flagM = flag.String("m", "", "Set `message`")
 )
 
-var Program, Version string
+var program string
+
+// Version defines the version of the program and gets set via ldflags
+var Version string
 
 func main() {
-	Program = path.Base(os.Args[0])
+	program = path.Base(os.Args[0])
 	if Version == "" {
 		Version = "Unknown Version"
 	}
 
 	flag.Usage = func() {
-		fmt.Fprintf(os.Stderr, "%s (%s)\n", Program, Version)
-		fmt.Fprintf(os.Stderr, "Usage: %s -k key -m message [-t title] [-e event] [-p password] [-s salt]\n", Program)
+		fmt.Fprintf(os.Stderr, "%s (%s)\n", program, Version)
+		fmt.Fprintf(os.Stderr, "Usage: %s -k key -m message [-t title] [-e event] [-p password] [-s salt]\n", program)
 		flag.PrintDefaults()
 		os.Exit(1)
 	}
