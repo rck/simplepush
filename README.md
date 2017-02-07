@@ -9,7 +9,7 @@ Golang client and library for simplepush.io
 # Synopsis
 ```
 simplepush
-Usage: simplepush -k key -m message [-t title] [-e event] [-p password]
+Usage: simplepush -k key -m message [-t title] [-e event] [-p password] [-s salt]
   -e event
     	Set event
   -k key
