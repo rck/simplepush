@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/rck/simplepush.svg?branch=master)](https://travis-ci.org/rck/simplepush)
 [![GO Report](https://goreportcard.com/badge/github.com/rck/simplepush)](https://goreportcard.com/report/github.com/rck/simplepush)
-[![GO Docs](https://img.shields.io/badge/docs-GoDoc-blue.svg)](https://godoc.org/github.com/rck/simplepush)
+[![GoDoc](https://godoc.org/github.com/rck/simplepush?status.svg)](https://godoc.org/github.com/rck/simplepush)
 [![Docker Automated build](https://img.shields.io/docker/automated/rck/simplepush.svg)](https://hub.docker.com/r/rck81/simplepush/)
 
 # simplepush
