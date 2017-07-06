@@ -7,6 +7,7 @@ import (
 	"crypto/cipher"
 	"crypto/rand"
 	"crypto/sha1"
+	"crypto/tls"
 	"encoding/base64"
 	"encoding/hex"
 	"errors"
@@ -112,7 +113,10 @@ func Send(m Message) error {
 	u.Path = resource
 	urlStr := fmt.Sprintf("%v", u)
 
-	client := &http.Client{}
+	tr := &http.Transport{
+		TLSNextProto: make(map[string]func(string, *tls.Conn) http.RoundTripper),
+	}
+	client := &http.Client{Transport: tr}
 
 	resp, err := client.PostForm(urlStr, data)
 	if err != nil {
